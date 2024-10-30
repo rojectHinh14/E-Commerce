@@ -1,9 +1,9 @@
 let listCart = [];
 function checkCart(){
-        var cookieValue = document.cookie
+    const cookieValue = document.cookie
         .split('; ')
         .find(row => row.startsWith('listCart='));
-        if(cookieValue){
+    if(cookieValue){
             listCart = JSON.parse(cookieValue.split('=')[1]);
         }
 }
@@ -18,14 +18,14 @@ function addCartToHTML(){
     let totalPriceHTML = document.querySelector('.totalPrice');
     let totalQuantity = 0;
     let totalPrice = 0;
-    // if has product in Cart
+    // if it has product in Cart
     if(listCart){
         listCart.forEach(product => {
             if(product){
                 let newCart = document.createElement('div');
                 newCart.classList.add('item');
                 newCart.innerHTML = 
-                    `<img src="${product.image}">
+                    `<img src="${product.image}" alt="">
                     <div class="info">
                         <div class="name">${product.name}</div>
                         <div class="price">$${product.price}/1 product</div>

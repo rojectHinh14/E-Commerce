@@ -1,13 +1,19 @@
-const sign_in_btn = document.querySelector("#sign-in-btn");
-const sign_up_btn = document.querySelector("#sign-up-btn");
+const sign_in_btn = document.getElementById("sign-in-btn");
+const sign_up_btn = document.getElementById("sign-up-btn");
 const container = document.querySelector(".container");
 
-sign_up_btn.addEventListener('click', () => {
-    container.classList.add("sign-up-mode");
-});
-sign_in_btn.addEventListener('click', () => {
-    container.classList.remove("sign-up-mode");
-});
+if (sign_up_btn && sign_up_btn && container){
+
+    sign_up_btn.addEventListener('click', () => {
+        container.classList.add("sign-up-mode");
+    });
+
+    sign_in_btn.addEventListener('click', () => {
+        container.classList.remove("sign-up-mode");
+    });
+}
+else console.error("One or more elements not found");
+
 
 $(document).ready(function(){
     $("#sign-in").submit(function (event) {
@@ -49,7 +55,7 @@ $(document).ready(function(){
             contentType: "application/json",
             data: JSON.stringify({username: signUpUsername, email: signUpEmail, password: signUpPassword,
                 firstName: firstName, lastName: lastName, phone: phone, address: address}),
-            success: function (response) {
+            success: function () {
                 alert("Đăng ký thành công!");
                 window.location.href = "login";
             },

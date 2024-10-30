@@ -1,4 +1,3 @@
-
 function searchProduct() {
     const searchQuery = document.getElementById('search').value;
     if (searchQuery) {
@@ -92,11 +91,9 @@ document.querySelectorAll('.product button').forEach(button => {
     });
 });
 function toggleMenu() {
-    var menu = document.getElementById('menu-list');
+    const menu = document.getElementById('menu-list');
     menu.classList.toggle('show');
 }
-
-
 
     // Lấy tất cả các phần tử có class 'scroll-to-products'
     const scrollToProducts = document.querySelectorAll('.scroll-to-products');

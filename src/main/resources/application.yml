@@ -27,3 +27,11 @@ logging:
     org.hibernate: ERROR
     org.springframework.security: OFF
 
+storage:
+  root:
+    folder:
+      product: D:\\t3h\\e-commerce\\src\\main\\resources\\static\\image
+      avatar: D:\\t3h\\images\\avatar
+  relative:
+    path: file/avatar/
+
