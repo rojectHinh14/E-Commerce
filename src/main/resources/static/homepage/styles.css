@@ -5,6 +5,7 @@ body {
     padding: 0;
 }
 
+/*css cho homepage*/
 .main-header {
     width: 100%;
 }
@@ -647,8 +648,6 @@ html {
     font-size: 14px;
     margin-top: 5px;
 }
-
-
 
 .highlight-banner {
     margin-bottom: 20px;

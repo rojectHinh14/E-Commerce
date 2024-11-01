@@ -12,9 +12,9 @@ function getProduct(){
             console.log('AJAX response:', response);  // Log the entire response
 
             // Access the 'content' array in the response, not 'data'
-            let productDtos = response.content;
+            let productDTOs = response.content;
 
-            if (!productDtos || productDtos.length === 0) {
+            if (!productDTOs || productDTOs.length === 0) {
                 console.log('No products found or data is undefined');
                 return;
             }
@@ -22,8 +22,8 @@ function getProduct(){
             let productContainer = $('#product'); // Use correct id selector with #
             productContainer.empty(); // Clear the container first
 
-            for (let i = 0; i < productDtos.length; i++) {
-                let product = productDtos[i];
+            for (let i = 0; i < productDTOs.length; i++) {
+                let product = productDTOs[i];
                 let productHTML = `
                     <div class="product">
                         <img src="${product.image}" alt="${product.name}">

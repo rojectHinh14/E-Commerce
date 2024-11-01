@@ -25,6 +25,7 @@ document.querySelector('.search-bar input').addEventListener('input', function()
         suggestions.style.display = 'none';
     }
 });
+
 function startCountdown(hours, minutes, seconds) {
     const countdown = document.querySelector('.countdown');
     const updateCountdown = () => {
@@ -90,6 +91,7 @@ document.querySelectorAll('.product button').forEach(button => {
         alert(productName + ' đã được thêm vào giỏ hàng!');
     });
 });
+
 function toggleMenu() {
     const menu = document.getElementById('menu-list');
     menu.classList.toggle('show');
@@ -107,6 +109,7 @@ function toggleMenu() {
             });
         });
     });
+
 
 
 

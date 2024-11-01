@@ -19,33 +19,36 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomExceptionHandler.class)
     public ResponseEntity<ApiHandleResponse<CustomError>> handleProductException(CustomExceptionHandler ex, HttpServletRequest request){
 
-        ApiHandleResponse<CustomError> apiHandleResponse = ApiHandleResponse.<CustomError>builder()
-                .statusCode(ex.getStatus().value())
-                .error(CustomError.builder()
-                        .message(ex.getMessage())
-                        .timestamp(new Date())
-                        .path(request.getRequestURI())
-                        .build())
-                .build();
+        ApiHandleResponse<CustomError> handleResponse = new ApiHandleResponse<>();
+        handleResponse.setStatusCode(ex.getStatus().value());
 
-        return ResponseEntity.status(ex.getStatus()).body(apiHandleResponse);
+        CustomError error = ex.getError();
+        error.setTimestamp(new Date());
+        error.setPath(request.getRequestURI());
+
+        handleResponse.setError(error);
+
+        return ResponseEntity.status(ex.getStatus()).body(handleResponse);
+
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ApiHandleResponse<CustomError>> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException exception,
                                                                            HttpServletRequest request){
 
-        ApiHandleResponse<CustomError> apiHandleResponse = ApiHandleResponse.<CustomError>builder()
-                .statusCode(HttpServletResponse.SC_METHOD_NOT_ALLOWED)
-                .error(CustomError.builder()
-                        .code("METHOD_NOT_ALLOWED")
-                        .message("The " +exception.getMethod() + " method is not supported for route " + request.getRequestURI()
-                                + ". Supported method: " + exception.getSupportedHttpMethods())
-                        .details("The request method " + exception.getSupportedHttpMethods() + " is not supported. Please recheck!")
-                        .timestamp(new Date())
-                        .path(request.getRequestURI())
-                        .build())
-                .build();
+        ApiHandleResponse<CustomError> apiHandleResponse = new ApiHandleResponse<>();
+        apiHandleResponse.setStatusCode(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+
+        CustomError customError = new CustomError();
+        customError.setCode("METHOD_NOT_ALLOWED");
+        customError.setTimestamp(new Date());
+        customError.setPath(request.getRequestURI());
+        customError.setDetails("The " + exception.getMethod() + " method is not supported for route " + request.getRequestURI()
+                                + ". Supported method: " + exception.getSupportedHttpMethods());
+        customError.setMessage("The " +exception.getMethod() + " method is not supported for route " + request.getRequestURI()
+                + ". Supported method: " + exception.getSupportedHttpMethods());
+
+        apiHandleResponse.setError(customError);
 
         return new ResponseEntity<>(apiHandleResponse, HttpStatus.METHOD_NOT_ALLOWED);
     }
@@ -67,15 +70,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity<ApiHandleResponse<CustomError>> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception,
                                                                                                 HttpServletRequest request){
-        ApiHandleResponse<CustomError> apiHandleResponse = ApiHandleResponse.<CustomError>builder()
-                .statusCode(HttpServletResponse.SC_BAD_REQUEST)
-                .error(CustomError.builder().code("VALIDATION_ERROR")
-                        .timestamp(new Date())
-                        .message(Objects.requireNonNull(exception.getBindingResult().getFieldError()).getDefaultMessage())
-                        .path(request.getRequestURI())
-                        .details("Please recheck your information!")
-                        .build())
-                .build();
+        ApiHandleResponse<CustomError> apiHandleResponse = new ApiHandleResponse<>();
+        apiHandleResponse.setStatusCode(HttpServletResponse.SC_BAD_REQUEST);
+
+        apiHandleResponse.setError(CustomError.builder().code("VALIDATION_ERROR")
+                .timestamp(new Date())
+                .message(Objects.requireNonNull(exception.getBindingResult().getFieldError()).getDefaultMessage())
+                .path(request.getRequestURI())
+                .details("Please recheck your information!")
+                .build());
+
         return ResponseEntity.badRequest().body(apiHandleResponse);
     }
 

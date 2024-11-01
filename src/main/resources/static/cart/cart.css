@@ -1,0 +1,95 @@
+/*css cho phan cart*/
+.cartTab{
+    width: 400px;
+    background-color: #555;
+    padding: 20px;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    right: -400px;
+    bottom: 0;
+    display: grid;
+    grid-template-rows: 70px 1fr 50px;
+    transition: 0.5s;
+}
+
+body.show-cart .cartTab {
+    inset: 0 0 0 auto;
+}
+
+body.show-cart .container {
+    transform: translateX(-200px);
+}
+
+.cartTab h1 {
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+}
+
+.cartTab .btn {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cartTab .btn button {
+    cursor: pointer;
+    background-color: gray;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+}
+
+.cartTab .btn .close {
+    background-color: #ccc;
+    color: black;
+}
+
+.cartTab .list-cart .item img {
+    width: 100%;
+    filter: drop-shadow(0 50px 20px #0009);
+}
+
+.cartTab .list-cart .item {
+    display: grid;
+    grid-template-columns: 70px 90px 60px 1fr;
+    gap: 15px;
+    text-align: center;
+    align-items: center;
+}
+
+.list-cart .quantity button {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    color: black;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    font-size: 14px;
+    border: none;
+    outline: none;
+
+}
+
+.list-cart .quantity button:nth-child(2) {
+    background-color: transparent;
+    color: #eee;
+
+}
+
+.list-cart .item:nth-child(even) {
+    background-color: #eee1;
+}
+
+.list-cart {
+    /* nếu như có quá many products trong giỏ hàng thì mình cần must have thanh scroll để xem */
+    overflow: auto;
+}
+
+.list-cart::-webkit-scrollbar {
+    /* ần thanh scroll đi để k bị ảnh hưởng đến các props trong list-cart */
+    width: 0;
+}

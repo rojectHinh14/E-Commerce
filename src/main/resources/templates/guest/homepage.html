@@ -9,6 +9,7 @@
 </head>
 <body>
     <!-- Header Section -->
+    <div class="container">
     <header class="main-header">
         <div class="top-bar">
             <div class="left-section">
@@ -77,10 +78,13 @@
             
                 <div class="cart">
                     <i class="fa fa-shopping-bag" style="color: #ff6f61"></i>
-                    <span style="color: #ff6f61">Giỏ hàng</span>
+                    <!--cần xử lý với giỏ hàng-->
+                    <span style="color: #ff6f61" id="inCart">Giỏ hàng</span>
                     <span style="margin-top: 22px; margin-right: 3px; color: #e86868; font-size: 15px;" >0 </span> <span>Sản phẩm</span>
                 </div>
             </div>
+
+<!--           hien thi danh sach san pham cua gio hang-->
             
         </div>
 
@@ -749,9 +753,9 @@
             </div>
         </a>
     </div>
-    
-      
-    
+
+    </div>
+
       <footer>
         <div class="footer-container">
             <div class="footer-top">
@@ -791,5 +795,6 @@
     </footer>
     
     <script src="../js/script.js"></script>
+    <script src="../js/cart.js"></script>
 </body>
 </html>

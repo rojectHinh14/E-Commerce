@@ -31,7 +31,7 @@ public class WebSecurityConfig {
         httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers(Endpoints.Public_Endpoints).permitAll()
                         .requestMatchers("/guest/**", "/products/**").permitAll()
                         .requestMatchers( "/login/**", "/cms/**", "/assets/**", "/seller/**","/homepage/**",
-                                "/image/**", "/js/**", "/").permitAll()
+                                "/image/**", "/cart/** ", "/js/**", "/").permitAll()
                         .requestMatchers(Endpoints.Admin_Endpoints).hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

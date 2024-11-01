@@ -1,21 +1,36 @@
 package com.t3h.e_commerce.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
 
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CustomError {
-    String code;
-    String message;
-    String details;
-    Date timestamp;
-    String path;
+    private String code;
+    private String message;
+    private String details;
+    private Date timestamp;
+    private String path;
+
+    public CustomError(String code, String message, String details, Date timestamp, String path) {
+        this.code = code;
+        this.message = message;
+        this.details = details;
+        this.timestamp = timestamp;
+        this.path = path;
+    }
+
+    public CustomError(String code, String message, String details) {
+        this.code = code;
+        this.message = message;
+        this.details = details;
+    }
+
+    public CustomError() {
+    }
+
 }
